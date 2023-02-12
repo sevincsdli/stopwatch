@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stop Watch</title>
+    <style>
+      .container {
+        display: flex;
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .buttons {
+        display: flex;
+        gap: 1rem;
+      }
+      button {
+        border: none;
+        background-color: rgb(96, 211, 173);
+        color: white;
+        border-radius: 0.5rem;
+        padding: 0.6rem 1rem;
+        margin-top: 6rem;
+      }
+      .dateScreen{
+        font-size: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>STOPWATCH</h1>
+      <p class="dateScreen"><span class="mins">00</span>:<span class="seconds">00</span></p>
+      <div class="buttons">
+        <button onclick="start2();">START</button>
+        <button onclick="reset2();">RESET</button>
+        <button onclick="stop2();">STOP</button>
+      </div>
+    </div>
+
+    <script>
+        const dateScreen=document.querySelector('.dateScreen');
+        const seconds=document.querySelector('.seconds');
+        const  mins=document.querySelector('.mins');
+        // const start=document.querySelector('.start');
+        // const reset=document.querySelector('.reset');
+        // const stop=document.querySelector('.stop');
+        const date=new Date();
+        let interval;
+        let minutesValue=0,secondsValue=0;
+        interval=setInterval(start2,1000);
+        
+        function start2 (){
+   secondsValue++;
+   seconds.textContent=secondsValue;
+   if(secondsValue>59){
+    secondsValue=0;
+    seconds.textContent=secondsValue;
+    minutesValue++;
+    mins.textContent=minutesValue;
+secondsValue++;
+   }
+   if(secondsValue<9){
+    seconds.textContent='0'+secondsValue;
+   }
+   if(minutesValue<9){
+    mins.textContent='0'+minutesValue;
+   }
+        }
+        setInterval(stopWatch,1000);
+   function reset2(){
+    clearInterval(interval);
+    secondsValue='00';
+    minutesValue='00';
+    seconds.textContent=secondsValue;
+    mins.textContent=minutesValue;
+   }
+   function stop2(){
+clearInterval(interval);
+
+   }
+
+    </script>
+  </body>
+</html>
